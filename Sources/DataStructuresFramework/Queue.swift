@@ -22,10 +22,8 @@ public struct Queue<T> {
 
     /// Adds a new element to the end of the queue.
     /// - Parameter element: The element to enqueue.
-    /// - Returns: `true` after the element is successfully added.
-    public mutating func enqueue(_ element: T) -> Bool {
+    public mutating func enqueue(_ element: T) {
         array.append(element)
-        return true
     }
 
     /// Removes and returns the first element of the queue.
