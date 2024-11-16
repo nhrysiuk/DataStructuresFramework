@@ -10,8 +10,8 @@ import Foundation
 public class Matrix {
 
     private var data: [[Double]]
-    let rows: Int
-    let columns: Int
+    public let rows: Int
+    public let columns: Int
 
     public init(rows: Int, columns: Int, initialValue: Double = 0.0) {
         self.rows = rows
@@ -61,7 +61,7 @@ public class Matrix {
         return transposed
     }
 
-    static func + (lhs: Matrix, rhs: Matrix) throws -> Matrix {
+    public static func + (lhs: Matrix, rhs: Matrix) throws -> Matrix {
         guard lhs.rows == rhs.rows && lhs.columns == rhs.columns else {
             throw MatrixError.dimensionsMismatch
         }
@@ -74,7 +74,7 @@ public class Matrix {
         return result
     }
 
-    static func - (lhs: Matrix, rhs: Matrix) throws -> Matrix {
+    public static func - (lhs: Matrix, rhs: Matrix) throws -> Matrix {
         guard lhs.rows == rhs.rows && lhs.columns == rhs.columns else {
             throw MatrixError.dimensionsMismatch
         }
@@ -87,7 +87,7 @@ public class Matrix {
         return result
     }
 
-    static func * (lhs: Matrix, scalar: Double) -> Matrix {
+    public static func * (lhs: Matrix, scalar: Double) -> Matrix {
         let result = Matrix(rows: lhs.rows, columns: lhs.columns)
         for i in 0..<lhs.rows {
             for j in 0..<lhs.columns {
@@ -97,7 +97,7 @@ public class Matrix {
         return result
     }
 
-    static func * (lhs: Matrix, rhs: Matrix) throws -> Matrix {
+    public static func * (lhs: Matrix, rhs: Matrix) throws -> Matrix {
         guard lhs.columns == rhs.rows else {
             throw MatrixError.dimensionsMismatch
         }
@@ -112,7 +112,7 @@ public class Matrix {
         return result
     }
 
-    static func == (lhs: Matrix, rhs: Matrix) -> Bool {
+    public static func == (lhs: Matrix, rhs: Matrix) -> Bool {
         guard lhs.rows == rhs.rows && lhs.columns == rhs.columns else {
             return false
         }
@@ -130,7 +130,7 @@ public class Matrix {
         }
     }
 
-    enum MatrixError: Error {
+    public enum MatrixError: Error {
         case invalidDimensions
         case dimensionsMismatch
     }
