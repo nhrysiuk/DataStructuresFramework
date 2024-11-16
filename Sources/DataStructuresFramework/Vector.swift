@@ -41,10 +41,9 @@ public class Vector {
     ///   - lhs: The first vector.
     ///   - rhs: The second vector.
     /// - Returns: A new vector representing the sum of the two vectors.
-    /// - Throws: `VectorError.dimensionsMismatch` if the vectors have different dimensions.
-    public static func + (lhs: Vector, rhs: Vector) throws -> Vector {
+    public static func + (lhs: Vector, rhs: Vector) -> Vector? {
         guard lhs.dimension == rhs.dimension else {
-            throw VectorError.dimensionsMismatch
+            return nil
         }
         var result = [Double]()
         for i in 0..<lhs.dimension {
@@ -58,10 +57,9 @@ public class Vector {
     ///   - lhs: The first vector.
     ///   - rhs: The second vector.
     /// - Returns: A new vector representing the difference between the two vectors.
-    /// - Throws: `VectorError.dimensionsMismatch` if the vectors have different dimensions.
-    public static func - (lhs: Vector, rhs: Vector) throws -> Vector {
+    public static func - (lhs: Vector, rhs: Vector) -> Vector? {
         guard lhs.dimension == rhs.dimension else {
-            throw VectorError.dimensionsMismatch
+            return nil
         }
         var result = [Double]()
         for i in 0..<lhs.dimension {
@@ -88,10 +86,9 @@ public class Vector {
     ///   - lhs: The first vector.
     ///   - rhs: The second vector.
     /// - Returns: The dot product of the two vectors.
-    /// - Throws: `VectorError.dimensionsMismatch` if the vectors have different dimensions.
-    public static func * (lhs: Vector, rhs: Vector) throws -> Double {
+    public static func * (lhs: Vector, rhs: Vector) -> Double? {
         guard lhs.dimension == rhs.dimension else {
-            throw VectorError.dimensionsMismatch
+            return  nil
         }
         var result = 0.0
         for i in 0..<lhs.dimension {
@@ -117,14 +114,9 @@ public class Vector {
         return self * (1 / mag)
     }
 
-    /// Prints the components of the vector.
-    public func printVector() {
-        print(components)
-    }
-
-    /// Errors that can occur during vector operations.
-    public enum VectorError: Error {
-        /// Indicates a mismatch in vector dimensions.
-        case dimensionsMismatch
+    /// A textual representation of the vector.
+    public var description: String {
+        let innerPart = components.map { "\($0)" }.joined(separator: ", ")
+        return "[\(innerPart)]"
     }
 }
