@@ -71,6 +71,12 @@ public class Matrix {
         return transposed
     }
 
+    /// Adds two matrices element-wise and returns a new matrix.
+    /// - Parameters:
+    ///   - lhs: The left-hand matrix.
+    ///   - rhs: The right-hand matrix.
+    /// - Throws: `MatrixError.dimensionsMismatch` if the matrices' dimensions do not match.
+    /// - Returns: A new matrix representing the element-wise sum of `lhs` and `rhs`.
     public static func + (lhs: Matrix, rhs: Matrix) throws -> Matrix {
         guard lhs.rows == rhs.rows && lhs.columns == rhs.columns else {
             throw MatrixError.dimensionsMismatch
@@ -84,6 +90,12 @@ public class Matrix {
         return result
     }
 
+    /// Subtracts two matrices element-wise and returns a new matrix.
+    /// - Parameters:
+    ///   - lhs: The left-hand matrix.
+    ///   - rhs: The right-hand matrix.
+    /// - Throws: `MatrixError.dimensionsMismatch` if the matrices' dimensions do not match.
+    /// - Returns: A new matrix representing the element-wise difference of `lhs` and `rhs`.
     public static func - (lhs: Matrix, rhs: Matrix) throws -> Matrix {
         guard lhs.rows == rhs.rows && lhs.columns == rhs.columns else {
             throw MatrixError.dimensionsMismatch
@@ -97,6 +109,11 @@ public class Matrix {
         return result
     }
 
+    /// Multiplies a matrix by a scalar (each element of the matrix is multiplied by the scalar).
+    /// - Parameters:
+    ///   - lhs: The matrix to be multiplied.
+    ///   - scalar: The scalar to multiply the matrix by.
+    /// - Returns: A new matrix representing the result of `lhs * scalar`.
     public static func * (lhs: Matrix, scalar: Double) -> Matrix {
         let result = Matrix(rows: lhs.rows, columns: lhs.columns)
         for i in 0..<lhs.rows {
@@ -107,6 +124,12 @@ public class Matrix {
         return result
     }
 
+    /// Multiplies two matrices together and returns the resulting matrix.
+    /// - Parameters:
+    ///   - lhs: The left-hand matrix.
+    ///   - rhs: The right-hand matrix.
+    /// - Throws: `MatrixError.dimensionsMismatch` if the number of columns in `lhs` does not match the number of rows in `rhs`.
+    /// - Returns: A new matrix representing the product of `lhs` and `rhs`.
     public static func * (lhs: Matrix, rhs: Matrix) throws -> Matrix {
         guard lhs.columns == rhs.rows else {
             throw MatrixError.dimensionsMismatch
@@ -122,6 +145,11 @@ public class Matrix {
         return result
     }
 
+    /// Compares two matrices for equality. Two matrices are considered equal if they have the same dimensions and each corresponding element is equal.
+    /// - Parameters:
+    ///   - lhs: The left-hand matrix.
+    ///   - rhs: The right-hand matrix.
+    /// - Returns: `true` if the matrices are equal, `false` otherwise.
     public static func == (lhs: Matrix, rhs: Matrix) -> Bool {
         guard lhs.rows == rhs.rows && lhs.columns == rhs.columns else {
             return false
