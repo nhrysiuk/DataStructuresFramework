@@ -77,9 +77,9 @@ public class Matrix {
     ///   - rhs: The right-hand matrix.
     /// - Throws: `MatrixError.dimensionsMismatch` if the matrices' dimensions do not match.
     /// - Returns: A new matrix representing the element-wise sum of `lhs` and `rhs`.
-    public static func + (lhs: Matrix, rhs: Matrix) throws -> Matrix {
+    public static func + (lhs: Matrix, rhs: Matrix) -> Matrix? {
         guard lhs.rows == rhs.rows && lhs.columns == rhs.columns else {
-            throw MatrixError.dimensionsMismatch
+            return nil
         }
         let result = Matrix(rows: lhs.rows, columns: lhs.columns)
         for i in 0..<lhs.rows {
@@ -94,11 +94,10 @@ public class Matrix {
     /// - Parameters:
     ///   - lhs: The left-hand matrix.
     ///   - rhs: The right-hand matrix.
-    /// - Throws: `MatrixError.dimensionsMismatch` if the matrices' dimensions do not match.
     /// - Returns: A new matrix representing the element-wise difference of `lhs` and `rhs`.
-    public static func - (lhs: Matrix, rhs: Matrix) throws -> Matrix {
+    public static func - (lhs: Matrix, rhs: Matrix) -> Matrix? {
         guard lhs.rows == rhs.rows && lhs.columns == rhs.columns else {
-            throw MatrixError.dimensionsMismatch
+            return nil
         }
         let result = Matrix(rows: lhs.rows, columns: lhs.columns)
         for i in 0..<lhs.rows {
@@ -128,11 +127,10 @@ public class Matrix {
     /// - Parameters:
     ///   - lhs: The left-hand matrix.
     ///   - rhs: The right-hand matrix.
-    /// - Throws: `MatrixError.dimensionsMismatch` if the number of columns in `lhs` does not match the number of rows in `rhs`.
     /// - Returns: A new matrix representing the product of `lhs` and `rhs`.
-    public static func * (lhs: Matrix, rhs: Matrix) throws -> Matrix {
+    public static func * (lhs: Matrix, rhs: Matrix) -> Matrix? {
         guard lhs.columns == rhs.rows else {
-            throw MatrixError.dimensionsMismatch
+            return nil
         }
         let result = Matrix(rows: lhs.rows, columns: rhs.columns)
         for i in 0..<lhs.rows {
@@ -145,7 +143,7 @@ public class Matrix {
         return result
     }
 
-    /// Compares two matrices for equality. Two matrices are considered equal if they have the same dimensions and each corresponding element is equal.
+    /// Compares two matrices for equality.
     /// - Parameters:
     ///   - lhs: The left-hand matrix.
     ///   - rhs: The right-hand matrix.
@@ -162,15 +160,19 @@ public class Matrix {
         return true
     }
 
-    /// Prints a matrix.
-    public func printMatrix() {
-        for row in data {
-            print(row)
+    /// Returns a `String` representative of the matrix
+    public var description: String {
+        var result = ""
+        for (index, row) in data.enumerated() {
+            result += row.map { String($0) }.joined(separator: " ")
+            if index < data.count - 1 {
+                result += "\n"
+            }
         }
+        return result
     }
 
     private enum MatrixError: Error {
         case invalidDimensions
-        case dimensionsMismatch
     }
 }
