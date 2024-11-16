@@ -20,15 +20,19 @@ public struct Stack<Element> {
     public mutating func pop() -> Element? {
         storage.popLast()
     }
+
+    /// Returns a boolean indicating whether the stack is empty.
+    /// - Returns: `true` if the stack is empty, otherwise `false`.
+    public var isEmpty: Bool {
+        return storage.isEmpty
+    }
 }
 
 extension Stack: CustomStringConvertible {
 
     /// A textual representation of the stack, with the top element shown first.
     public var description: String {
-        let topDivider = "-top\n"
-        let bottomDivider = "\n---"
         let stackElements = storage.map { "\($0)" }.reversed().joined(separator: "\n")
-        return topDivider + stackElements + bottomDivider
+        return stackElements
     }
 }
