@@ -1,24 +1,32 @@
-//
-//  File.swift
-//  MathFramework
-//
-//  Created by Анастасія Грисюк on 16.11.2024.
-//
-
 import Foundation
 
+/// A class representing a 2D matrix with rows and columns.
 public class Matrix {
 
+    /// The data storage for the matrix.
     private var data: [[Double]]
+
+    /// The number of rows in the matrix.
     public let rows: Int
+
+    /// The number of columns in the matrix.
     public let columns: Int
 
+    /// Initializes a matrix with specified dimensions and an initial value.
+    /// - Parameters:
+    ///   - rows: The number of rows in the matrix.
+    ///   - columns: The number of columns in the matrix.
+    ///   - initialValue: The value to initialize all elements. Defaults to `0.0`.
     public init(rows: Int, columns: Int, initialValue: Double = 0.0) {
         self.rows = rows
         self.columns = columns
         self.data = Array(repeating: Array(repeating: initialValue, count: columns), count: rows)
     }
 
+    /// Initializes a matrix from a 2D array.
+    /// - Parameters:
+    ///   - array: A 2D array of `Double` values.
+    /// - Throws: `MatrixError.invalidDimensions` if the array is empty or rows have inconsistent column counts.
     public init(fromArray array: [[Double]]) throws {
         guard let firstRow = array.first else {
             throw MatrixError.invalidDimensions
@@ -51,6 +59,8 @@ public class Matrix {
         return row >= 0 && row < rows && column >= 0 && column < columns
     }
 
+    /// Transposes a matrix.
+    /// - Returns: transposed matrix.
     public func transpose() -> Matrix {
         let transposed = Matrix(rows: columns, columns: rows)
         for i in 0..<rows {
@@ -124,13 +134,14 @@ public class Matrix {
         return true
     }
 
+    /// Prints a matrix.
     public func printMatrix() {
         for row in data {
             print(row)
         }
     }
 
-    public enum MatrixError: Error {
+    private enum MatrixError: Error {
         case invalidDimensions
         case dimensionsMismatch
     }
