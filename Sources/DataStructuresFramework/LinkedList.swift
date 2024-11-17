@@ -116,7 +116,7 @@ extension LinkedList: CustomStringConvertible {
     /// A textual representation of the linked list.
     public var description: String {
         guard let head = head else {
-            return "Empty list"
+            return "[]"
         }
         return String(describing: head)
     }
