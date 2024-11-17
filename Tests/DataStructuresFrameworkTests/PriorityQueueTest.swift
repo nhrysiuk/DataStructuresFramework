@@ -3,8 +3,26 @@ import Testing
 
 struct PriorityQueueTest {
 
-    @Test func create() async throws {
-        
+    @Test func enqueueAndPeek() async throws {
+        var queue = SimplePriorityQueue<String>()
+        #expect(queue.isEmpty)
+        queue.enqueue("A", withPriority: 5)
+        queue.enqueue("B", withPriority: 2)
+        queue.enqueue("C", withPriority: 8)
+
+        #expect(queue.peek() == "B")
     }
 
+    @Test func dequeue() async throws {
+        var queue = SimplePriorityQueue<String>()
+
+        queue.enqueue("A", withPriority: 5)
+        queue.enqueue("B", withPriority: 2)
+        queue.enqueue("C", withPriority: 8)
+
+        #expect(queue.dequeue() == "B")
+        #expect(queue.dequeue() == "A")
+        #expect(queue.dequeue() == "C")
+        #expect(queue.dequeue() == nil)
+    }
 }
