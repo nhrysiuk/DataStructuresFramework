@@ -4,7 +4,7 @@ import Foundation
 public class Vector {
 
     /// The components of the vector.
-    private var components: [Double]
+    private(set) var components: [Double]
 
     /// The dimension of the vector (number of components).
     public var dimension: Int {

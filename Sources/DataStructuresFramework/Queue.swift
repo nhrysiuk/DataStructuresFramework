@@ -4,7 +4,7 @@ import Foundation
 public struct Queue<T> {
 
     /// The underlying array storing the queue's elements.
-    public var array: [T] = []
+    private(set) var array: [T] = []
 
     /// Creates an empty queue.
     public init() {}

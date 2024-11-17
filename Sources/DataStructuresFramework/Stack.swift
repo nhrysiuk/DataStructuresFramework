@@ -4,7 +4,7 @@ import Foundation
 public struct Stack<Element> {
 
     /// The underlying array used to store elements in the stack.
-    private var storage: [Element] = []
+    private(set) var storage: [Element] = []
 
     /// Creates an empty stack.
     public init() {}

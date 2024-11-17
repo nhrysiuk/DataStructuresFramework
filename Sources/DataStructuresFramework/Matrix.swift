@@ -4,7 +4,7 @@ import Foundation
 public class Matrix {
 
     /// The data storage for the matrix.
-    private var data: [[Double]]
+    private(set) var data: [[Double]]
 
     /// The number of rows in the matrix.
     public let rows: Int
