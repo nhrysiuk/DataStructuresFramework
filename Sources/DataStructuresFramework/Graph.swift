@@ -7,7 +7,7 @@ public class Graph<T: Hashable> {
     private(set) var adjacencyList: [T: [T]] = [:]
 
     /// A flag to determine whether the graph is directed or undirected.
-    private(set) let isDirected: Bool
+    public let isDirected: Bool
 
     /// Initializes a new graph.
     ///
