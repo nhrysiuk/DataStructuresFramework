@@ -4,7 +4,7 @@ import Testing
 struct PriorityQueueTest {
 
     @Test func enqueueAndPeek() async throws {
-        var queue = SimplePriorityQueue<String>()
+        var queue = PriorityQueue<String>()
         #expect(queue.isEmpty)
         queue.enqueue("A", withPriority: 5)
         queue.enqueue("B", withPriority: 2)
@@ -14,7 +14,7 @@ struct PriorityQueueTest {
     }
 
     @Test func dequeue() async throws {
-        var queue = SimplePriorityQueue<String>()
+        var queue = PriorityQueue<String>()
 
         queue.enqueue("A", withPriority: 5)
         queue.enqueue("B", withPriority: 2)
