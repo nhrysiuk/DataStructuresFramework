@@ -2,7 +2,9 @@ import Foundation
 
 /// A priority queue that stores elements with their priorities.
 public struct PriorityQueue<Element: Comparable> {
-    
+
+    public init() {}
+
     /// Elements of PriorityQueue.
     private(set) public var elements: [(element: Element, priority: Int)] = []
 
