@@ -5,7 +5,7 @@ struct LinkedListTest {
 
     @Test func push() async throws {
         var list = LinkedList<Int>()
-        
+
         list.push(1)
         list.push(2)
         list.push(3)

@@ -50,7 +50,7 @@ struct MatrixTest {
         let matrix2 = Matrix(fromArray: [[1.0, 2.0, 0.0], [3.0, 5.0, 10.0]])
         guard let matrix, let matrix2 else { return }
         let matrix3 = matrix - matrix2
-        
+
         guard let matrix3 else { return }
 
         #expect(matrix3 == Matrix(rows: 2, columns: 3))
