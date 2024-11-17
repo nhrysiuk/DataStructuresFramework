@@ -1,8 +1,10 @@
 import Foundation
 
 /// A priority queue that stores elements with their priorities.
-public struct SimplePriorityQueue<Element: Comparable> {
-    private(set) var elements: [(element: Element, priority: Int)] = []
+public struct PriorityQueue<Element: Comparable> {
+    
+    /// Elements of PriorityQueue.
+    private(set) public var elements: [(element: Element, priority: Int)] = []
 
     /// Checks if the queue is empty.
     /// - Returns: `true` if the queue is empty, `false` otherwise.

@@ -4,7 +4,7 @@ import Foundation
 public class Graph<T: Hashable> {
 
     /// The adjacency list to represent the graph.
-    private(set) var adjacencyList: [T: [T]] = [:]
+    private(set) public var adjacencyList: [T: [T]] = [:]
 
     /// A flag to determine whether the graph is directed or undirected.
     public let isDirected: Bool
