@@ -27,13 +27,13 @@ public class Matrix {
     /// - Parameters:
     ///   - array: A 2D array of `Double` values.
     /// - Throws: `MatrixError.invalidDimensions` if the array is empty or rows have inconsistent column counts.
-    public init(fromArray array: [[Double]]) throws {
+    public init?(fromArray array: [[Double]]) {
         guard let firstRow = array.first else {
-            throw MatrixError.invalidDimensions
+            return nil
         }
         let columnCount = firstRow.count
         guard array.allSatisfy({ $0.count == columnCount }) else {
-            throw MatrixError.invalidDimensions
+            return nil
         }
         self.rows = array.count
         self.columns = columnCount
@@ -103,41 +103,6 @@ public class Matrix {
         for i in 0..<lhs.rows {
             for j in 0..<lhs.columns {
                 result[i, j] = lhs[i, j] - rhs[i, j]
-            }
-        }
-        return result
-    }
-
-    /// Multiplies a matrix by a scalar (each element of the matrix is multiplied by the scalar).
-    /// - Parameters:
-    ///   - lhs: The matrix to be multiplied.
-    ///   - scalar: The scalar to multiply the matrix by.
-    /// - Returns: A new matrix representing the result of `lhs * scalar`.
-    public static func * (lhs: Matrix, scalar: Double) -> Matrix {
-        let result = Matrix(rows: lhs.rows, columns: lhs.columns)
-        for i in 0..<lhs.rows {
-            for j in 0..<lhs.columns {
-                result[i, j] = lhs[i, j] * scalar
-            }
-        }
-        return result
-    }
-
-    /// Multiplies two matrices together and returns the resulting matrix.
-    /// - Parameters:
-    ///   - lhs: The left-hand matrix.
-    ///   - rhs: The right-hand matrix.
-    /// - Returns: A new matrix representing the product of `lhs` and `rhs`.
-    public static func * (lhs: Matrix, rhs: Matrix) -> Matrix? {
-        guard lhs.columns == rhs.rows else {
-            return nil
-        }
-        let result = Matrix(rows: lhs.rows, columns: rhs.columns)
-        for i in 0..<lhs.rows {
-            for j in 0..<rhs.columns {
-                for k in 0..<lhs.columns {
-                    result[i, j] += lhs[i, k] * rhs[k, j]
-                }
             }
         }
         return result
